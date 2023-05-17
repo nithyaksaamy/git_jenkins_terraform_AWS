@@ -17,7 +17,7 @@ stages{
                 sh ('terraform plan') 
            }
         }
- stage('Approval') {
+ stage("Approval") {
             when {
                 not {
                     equals expected: true, actual: params.autoApprove
