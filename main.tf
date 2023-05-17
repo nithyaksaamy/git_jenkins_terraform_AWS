@@ -11,6 +11,9 @@ terraform {
 
 provider "aws" {
   region  = "ap-southeast-2"
+  access_key = "AKIAXVC3HURVP4HLGDXW"
+  secret_key = "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"
+
 }
 
 resource "aws_instance" "demo_app_server" {
