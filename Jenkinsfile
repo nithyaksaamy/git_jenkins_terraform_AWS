@@ -24,7 +24,7 @@ stages{
                 }
             }
 
-
+}
 stage("Apply") {
             steps {
                 sh ('terraform apply')
