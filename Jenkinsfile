@@ -18,12 +18,13 @@ stages{
            }
         }
        stage("Approval") {
-            when {
+            steps{
+              when {
                 not {
                     equals expected: true, actual: params.autoApprove
                 }
             }
-
+}
        stage("Apply") {
             steps {
                 sh ('terraform apply')
