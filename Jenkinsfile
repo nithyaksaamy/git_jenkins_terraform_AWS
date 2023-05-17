@@ -7,11 +7,16 @@ stages{
             }
         }
         
-        stage ("terraform Action") {
+        stage ("terraform plan") {
             steps {
-                echo "Terraform action is --> ${action}"
-                sh ('terraform ${action} --auto-approve') 
+                sh ('terraform plan') 
            }
         }
+stage("Apply") {
+            steps {
+                sh ('terraform apply -input=false tfplan')
+            }
+        }
+
    }
 }
