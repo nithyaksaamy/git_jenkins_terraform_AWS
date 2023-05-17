@@ -16,12 +16,12 @@ provider "aws" {
 
 }
 
-resource "aws_instance" "demo_app_server" {
+resource "aws_instance" "demo_server" {
   ami           = "ami-0d147324c76e8210a"
   instance_type = "t2.micro"
 
   tags = {
-    Name = "ExampleAppServerInstance"
+    Name = "ExampleServerInstance"
   }
 }
 
