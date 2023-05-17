@@ -16,7 +16,7 @@ provider "aws" {
 
 }
 
-resource "awsinsta" "demo" {
+resource "aws_instance" "demo" {
   ami           = "ami-0d147324c76e8210a"
   instance_type = "t2.micro"
 
