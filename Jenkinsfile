@@ -6,7 +6,11 @@ pipeline {
         string(name: 'version', defaultValue: '', description: 'Version variable to pass to Terraform')
         booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
     }
-    
+environment {
+        TF_IN_AUTOMATION      = '1'
+    }    
+
+
        stages {
         stage('Plan') {
             steps {
