@@ -7,8 +7,8 @@ pipeline {
         booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
     }
 environment {
-        AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-access-key-id')
-        AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-key')
+#        AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-access-key-id')
+#        AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-key')
         TF_IN_AUTOMATION      = '1'
     }    
 
@@ -19,13 +19,15 @@ environment {
                 script {
                     currentBuild.displayName = params.version
                 }
+withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
+
                 sh 'terraform init -input=false'
                 sh 'terraform workspace select ${environment}'
                 sh "terraform plan -input=false -out tfplan"
                 sh 'terraform show -no-color tfplan > tfplan.txt'
             }
         }
-
+}
         stage('Approval') {
             when {
                 not {
@@ -44,8 +46,10 @@ environment {
 
         stage('Apply') {
             steps {
+                withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
                 sh "terraform apply -input=false tfplan"
             }
+}
         }
     }
 
