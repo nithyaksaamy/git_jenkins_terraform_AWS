@@ -10,14 +10,14 @@ terraform {
 }
 
 provider "aws" {
-  region     = "ap-south-1"
-  access_key = "AKIA6PMUZQ4X7NKNVC3G"
-  secret_key = "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"
+  region     = "us-east-1"
+  access_key = "AKIA6PMUZQ4X2B3NDBPX"
+  secret_key = "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"
 
 }
 
-resource "aws_instance" "demo" {
-  ami           = "ami-0b08bfc6ff7069aff"
+resource "aws_instance" "aws_demo" {
+  ami           = "ami-0889a44b331db0194"
   instance_type = "t2.micro"
 
 }
